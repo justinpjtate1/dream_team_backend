@@ -1,15 +1,8 @@
 class PagesController < ApplicationController
   skip_before_action :verify_authenticity_token, raise: false
-  before_action :authenticate_devise_api_token!, only: [:players]
-  def index
-  end
+  before_action :authenticate_devise_api_token!, only: [:user_logged_in]
 
-  def players
-    devise_api_token = current_devise_api_token
-    if devise_api_token
-      render json: { message: "You are logged in as #{devise_api_token.resource_owner.email}" }, status: :ok
-    else
-      render json: { message: "You are not logged in" }, status: :unauthorized
-    end
+  def user_logged_in
+    render json: { message: true }
   end
 end
