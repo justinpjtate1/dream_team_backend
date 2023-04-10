@@ -28,6 +28,11 @@ class CustomTeamsController < ApplicationController
         render json: @teams
     end
 
+    def show_teams_players
+        @players = CustomTeamPlayer.joins(player: :club).select("custom_team_players.custom_team_id", "custom_team_players.player_id", "players.player_name", "clubs.club_name", "custom_team_players.position", "players.dob")
+        render json: @players
+    end
+
     def update_team
         @team = CustomTeam.find(params[:custom_team_id])
         @team.update(team_name: params[:custom_team_name])
@@ -36,7 +41,6 @@ class CustomTeamsController < ApplicationController
     end
 
     def update_team_players
-        # CustomTeamPlayer.joins(player: :club).select("custom_team_players.custom_team_id", "custom_team_players.player_id", "players.player_name", "clubs.club_name", "custom_team_players.position", "players.dob").where(custom_team_id: params[:custom_team_id]).destroy_all
         CustomTeamPlayer.where(custom_team_id: params[:players][0][:custom_team_id]).destroy_all
         params[:players].each do |player|
             CustomTeamPlayer.create(custom_team_id: player[:custom_team_id], player_id: player[:player_id], position: player[:position])

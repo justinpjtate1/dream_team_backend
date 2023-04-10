@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'custom_teams/save_players'
   get 'custom_teams/show_teams'
   post 'custom_teams/show_players'
+  get 'custom_teams/show_teams_players'
   post 'custom_teams/show_teams_from_user'
   patch 'custom_teams/update_team'
   post 'custom_teams/update_team_players'
