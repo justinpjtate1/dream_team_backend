@@ -66,7 +66,7 @@ Some of the pieces of code I would highlight:
 
 2. The update_team_players route
 
-    [](./public/update_team_players.png)
+    ![](./public/update_team_players.png)
 
     For this route, I passed an array of length anywhere between 1 - 11 in the params and I needed to save each item into the `CustomTeamPlayer` database. Using the each method on the array allowed me to get each element individually and create a record based on the information in the object for each element.
 
